@@ -40,9 +40,9 @@ export default {
 
 <template>
   <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-    <div class="bg-white rounded-lg shadow-lg p-6 w-3/4 md:w-1/2 lg:w-1/3 relative">
+    <div class="relative w-3/4 rounded-lg bg-white p-6 shadow-lg md:w-1/2 lg:w-1/3">
       <button
-        class="text-gray-500 hover:text-gray-900 absolute top-4 right-4"
+        class="absolute right-4 top-4 text-gray-500 hover:text-gray-900"
         @click="$emit('close')"
       >
         <svg
@@ -60,36 +60,41 @@ export default {
           />
         </svg>
       </button>
-      <h2 class="text-2xl font-bold mb-4">Add Product</h2>
-      <div class="flex flex-col gap-4">
+      <h2 class="mb-4 text-2xl font-bold">Add Product</h2>
+      <div class="flex flex-col justify-between gap-4">
         <label
-          class="flex flex-col items-center justify-center border-2 border-dashed rounded-lg h-48 w-64 cursor-pointer bg-blue-50"
+          class="flex h-36 w-40 cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed bg-blue-50"
         >
           <input type="file" class="hidden" @change="handleImageUpload" />
           <span class="text-blue-500">Upload Image</span>
         </label>
-        <input
-          type="text"
-          v-model="productName"
-          placeholder="Product Name"
-          class="border rounded px-4 py-2"
-        />
-        <input
-          type="text"
-          v-model="price"
-          placeholder="Input price"
-          class="border rounded px-4 py-2"
-        />
-        <select v-model="category" class="border rounded px-4 py-2">
+        <div class="absolute right-0 z-10 mb-6 mr-3 w-60 rounded-md">
+          <label class="mt-5 px-2 text-sm font-semibold">Product Name</label>
+          <input
+            type="text"
+            v-model="productName"
+            placeholder="Product Name"
+            class="rounded border border-blue-500 px-4 py-2"
+          />
+          <label class="px-2 text-sm font-semibold">Price</label>
+          <input
+            type="text"
+            v-model="price"
+            placeholder="Input price"
+            class="rounded border px-4 py-2 border-blue-500"
+          />
+        </div>
+        <label class="mt-5 px-2 text-sm font-semibold">Select category</label>
+        <select v-model="category" class="rounded border border-blue-500 px-4 py-2">
           <option value="" disabled>Select category</option>
           <option value="Makanan">Makanan</option>
           <option value="Minuman">Minuman</option>
           <option value="Lainnya">Lainnya</option>
         </select>
-        <div class="mt-4 flex justify-end gap-4">
+        <div class="mt-32 flex justify-end gap-4">
           <button
             @click="$emit('close')"
-            class="rounded border border-gray-600 px-4 py-2 text-gray-700 hover:bg-gray-100"
+            class="rounded border border-blue-600 px-4 py-2 text-blue-700 hover:bg-gray-100"
           >
             Cancel
           </button>

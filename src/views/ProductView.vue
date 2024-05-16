@@ -3,18 +3,21 @@ import axios from 'axios'
 import DetailsView from './DetailsView.vue'
 import AddProduct from './AddProduct.vue'
 import { cartStore } from '../stores/cartStore'
+import AddCategory from './AddCategory.vue'
 
 export default {
   components: {
     DetailsView,
-    AddProduct
+    AddProduct,
+    AddCategory
   },
   data() {
     return {
       posts: null,
       selectedProduct: null,
       showModal: false,
-      showAddProductModal: false
+      showAddProductModal: false,
+      showAddCategoryModal: false
     }
   },
   async mounted() {
@@ -58,6 +61,12 @@ export default {
       this.showAddProductModal = false
     },
     async productAdded() {
+      this.posts = await this.fetchProducts()
+    },
+    closeAddCategoryModal() {
+      this.showAddCategoryModal = false
+    },
+    async categoryAdded() {
       this.posts = await this.fetchProducts()
     },
     addToCart(product) {
@@ -148,7 +157,10 @@ export default {
           </div>
         </div>
         <div class="flex justify-end mt-10">
-          <button class="rounded bg-blue-500 px-4 py-3 font-medium text-white">
+          <button
+            class="rounded bg-blue-500 px-4 py-3 font-medium text-white"
+            @click="$router.push('/cart')"
+          >
             Total Bill : Rp.{{ totalBill }}
           </button>
         </div>

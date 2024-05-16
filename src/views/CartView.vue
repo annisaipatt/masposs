@@ -33,11 +33,18 @@ export default {
 
 <template>
   <div class="flex min-h-screen flex-col">
-    <nav class="font flex justify-between bg-blue-600 p-4 text-white">
-      <h1 class="text-xl font-bold">MASPOS</h1>
-      <p>Call Us +62 817-1902-092</p>
+    <nav class="flex justify-between bg-blue-600 p-5 px-36 text-white">
+      <h1 class="text-l font-bold">MASPOS</h1>
+      <div class="flex items-center justify-end gap-2">
+        <div class="">John doe</div>
+        <img
+          src="https://source.unsplash.com/random/?person"
+          class="size-8 rounded-full object-cover"
+          alt="Profile"
+        />
+      </div>
     </nav>
-    <div class="bg-white p-10">
+    <div class="bg-white p-10 px-36">
       <div class="overflow-x-auto">
         <table class="min-w-full">
           <thead>
@@ -51,7 +58,7 @@ export default {
           <tbody>
             <tr v-for="item in cartItems" :key="item.id">
               <td class="flex items-center p-2">
-                <img :src="item.picture_url" class="mr-4 h-16 w-16 object-cover" />
+                <img :src="item.picture_url" class="mr-4 h-28 w-28 rounded-lg object-cover" />
                 <div>
                   <div class="font-bold">{{ item.name }}</div>
                   <div class="mr-6 font-bold text-black">Rp. {{ item.price.toLocaleString() }}</div>
