@@ -3,7 +3,9 @@ import { cartStore } from '../stores/cartStore'
 
 export default {
   data() {
-    return {}
+    return {
+      isPaymentSuccessful: false // New data property to control the popup visibility
+    }
   },
   methods: {
     removeItem(productId) {
@@ -17,7 +19,12 @@ export default {
     },
     payBill() {
       // Handle the payment process
-      alert('Payment Successful!')
+      // Simulate successful payment
+      this.isPaymentSuccessful = true
+    },
+    closePopup() {
+      this.isPaymentSuccessful = false
+      this.$router.push('/products') // Navigate back to home when the popup is closed
     }
   },
   computed: {
@@ -52,7 +59,7 @@ export default {
               <th class="p-2 text-left">Product</th>
               <th class="p-2 text-left">Qty</th>
               <th class="p-2 text-left">Sub Total</th>
-              <th class="p-2 text-lefts"></th>
+              <th class="text-lefts p-2"></th>
             </tr>
           </thead>
           <tbody>
@@ -112,7 +119,7 @@ export default {
                 </div>
               </td>
               <td class="p-2 font-bold">Rp. {{ (item.price * item.quantity).toLocaleString() }}</td>
-              <td class="p-2 justify-evenly flex">
+              <td class="flex justify-evenly p-2">
                 <button
                   @click="removeItem(item.id)"
                   class="rounded bg-red-600 px-2 py-1 font-normal text-white"
@@ -123,7 +130,7 @@ export default {
             </tr>
           </tbody>
           <tfoot>
-            <tr class="justify-between flex">
+            <tr class="flex justify-between">
               <td class="p-2 text-right font-bold" colspan="2">Total</td>
               <td class="p-2 font-bold">Rp. {{ totalBill.toLocaleString() }}</td>
             </tr>
@@ -139,6 +146,35 @@ export default {
         </button>
         <button @click="payBill" class="rounded bg-blue-500 px-4 py-2 font-semibold text-white">
           Pay Bill
+        </button>
+      </div>
+    </div>
+    <div
+      v-if="isPaymentSuccessful"
+      class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
+    >
+      <div class="rounded-lg bg-white p-6 text-center shadow-lg">
+        <div class="mb-4 text-2xl font-bold">Payment Successful</div>
+        <div class="mb-4 flex items-center justify-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-12 w-12 text-green-500"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-10.707a1 1 0 00-1.414-1.414L9 9.586 7.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </div>
+        <div class="mb-6 font-bold text-lg">Rp. {{ totalBill.toLocaleString() }}</div>
+        <button
+          @click="closePopup"
+          class="rounded border border-blue-600 px-4 py-2 font-semibold text-blue-600"
+        >
+          Back to Home
         </button>
       </div>
     </div>

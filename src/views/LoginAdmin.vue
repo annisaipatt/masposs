@@ -29,14 +29,16 @@ const submit = () => {
 }
 </script>
 <template>
-  <div class="flex flex-col min-h-screen">
-    <nav class="flex justify-between p-8 text-black">
-      <h1 class="text-xl font-bold">MASPOS</h1>
-      <p>Call Us +62 817-1902-092</p>
+  <div class="flex min-h-screen flex-col">
+    <nav class="flex justify-between bg-blue-600 p-8 text-black">
+      <h1 class="text-xl font-bold text-white">MASPOS</h1>
+      <p class="text-white">Call Us +62 817-1902-092</p>
     </nav>
-    <div class="flex flex-col grow bg-blue-600">
-      <div class="flex flex-col items-center justify-center bg-white py-12 w-full">
-        <div class="bg-white p-6 rounded-lg shadow-lg sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="flex flex-grow flex-col">
+      <div class="flex flex-1 flex-col bg-blue-600"></div>
+      <div class="flex flex-1 flex-col bg-white"></div>
+      <div class="absolute inset-0 flex items-center justify-center">
+        <div class="rounded-lg bg-white p-6 shadow-lg sm:mx-auto sm:w-full sm:max-w-md">
           <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Sign in to your account
           </h2>
@@ -61,7 +63,7 @@ const submit = () => {
               <label for="password" class="block text-sm font-medium leading-6 text-gray-900"
                 >Password</label
               >
-              <div class="mt-2 relative">
+              <div class="relative mt-2">
                 <input
                   v-model="form.password"
                   :type="showPassword ? 'text' : 'password'"
@@ -70,7 +72,7 @@ const submit = () => {
                   class="block w-full rounded-md border-0 py-1.5 pr-9 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
                 <div
-                  class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
+                  class="absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3"
                   @click="togglePasswordVisibility"
                 >
                   <template v-if="showPassword">
@@ -119,7 +121,7 @@ const submit = () => {
             <div class="flex justify-center">
               <button
                 type="submit"
-                class="flex justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                class="flex justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
               >
                 Login
               </button>
@@ -127,7 +129,6 @@ const submit = () => {
           </form>
         </div>
       </div>
-      <div class="flex-grow bg-white"></div>
     </div>
   </div>
 </template>
